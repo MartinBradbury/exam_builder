@@ -1,3 +1,45 @@
+# ========================
+# FRONTEND (React/Vite)
+# ========================
+
+# Node modules and build output
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+
+# Local environment files for frontend
+frontend/.env
+frontend/.env.*  # covers things like .env.development, .env.production
+
+# ========================
+# BACKEND (Django)
+# ========================
+
+# Python cache and compiled files
+backend/__pycache__/
+backend/*.py[cod]
+backend/*.pyo
+backend/*.pyd
+
+# SQLite database (if used)
+backend/*.sqlite3
+
+# Virtual environments
+backend/venv/
+backend/env/
+backend/.venv/
+
+# Django generated/static files
+backend/media/
+backend/staticfiles/
+
+# Local environment file for backend
+backend/.env
+
+# ========================
+# GENERAL / COMMON
+# ========================
+
 # Logs
 logs
 *.log
@@ -7,15 +49,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# Editor / OS files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
@@ -23,18 +60,7 @@ dist-ssr
 *.sln
 *.sw?
 
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.sqlite3
-
-# Virtual environments
+# If you have a top-level venv (unlikely but safe to include)
 venv/
 env/
 .venv/
-
-# Django stuff
-media/
-staticfiles/

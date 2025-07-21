@@ -44,8 +44,8 @@ class UserLoginAPIView(GenericAPIView):
 
         return Response(response_data, status=status.HTTP_200_OK)
     
-class UserLogoutAPIView(RetrieveAPIView):
-    permission_classes = (IsAuthenticated,)
+class UserLogoutAPIView(GenericAPIView):
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         
