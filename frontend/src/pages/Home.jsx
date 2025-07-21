@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import "../styles/Home.css";
 import { UserContext } from "../context/UserContext";
+import Carousel from "react-bootstrap/Carousel";
+import bio from "../assets/home/alevelbio.jpg";
+import chem from "../assets/home/alevelchem.jpg";
+import physics from "../assets/home/alevelphysics.jpg";
 
 export default function Home() {
   const { user } = useContext(UserContext);
@@ -16,12 +20,10 @@ export default function Home() {
           </p>
           <div className="hero-buttons">
             {user ? (
-              // ✅ show Get Started if logged in
               <a href="/question-generator" className="btn btn-primary">
                 Get Started
               </a>
             ) : (
-              // ✅ show Login if not logged in
               <a href="/login" className="btn btn-secondary">
                 Login
               </a>
@@ -29,6 +31,46 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      {/* ✅ New Carousel Section */}
+      <section className="subject-carousel">
+        <h2
+          style={{
+            textAlign: "center",
+            marginTop: "40px",
+            marginBottom: "20px",
+          }}
+        >
+          Explore Subjects
+        </h2>
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          <Carousel>
+            <Carousel.Item>
+              <img className="d-block w-100" src={bio} alt="Biology" />
+              <Carousel.Caption className="carousel-caption-overlay">
+                <h3>Biology</h3>
+                <p>Dive into biological molecules, cells, and genetics.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+              <img className="d-block w-100" src={chem} alt="Chemistry" />
+              <Carousel.Caption className="carousel-caption-overlay">
+                <h3>Chemistry</h3>
+                <p>Explore chemical reactions and molecular structures.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+              <img className="d-block w-100" src={physics} alt="Physics" />
+              <Carousel.Caption className="carousel-caption-overlay">
+                <h3>Physics</h3>
+                <p>Understand forces, energy, and the laws of motion.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
+        </div>
+      </section>
 
       <section className="features">
         <h2>Why Choose My Platform?</h2>

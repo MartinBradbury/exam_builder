@@ -108,6 +108,37 @@
   margin-bottom: 20px;
 }
 
+/* Subject carousel */
+.subject-carousel img {
+  height: 600px; /* adjust as needed */
+  width: auto; /* let width scale proportionally */
+  margin: 0 auto; /* center horizontally if smaller */
+  display: block;
+  object-fit: contain; /* prevent cropping */
+  background: grey;
+}
+
+.carousel-caption-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 0 auto; /* center inline-block horizontally */
+}
+
+/* Override react-bootstrap caption positioning */
+.carousel-caption {
+  left: 50%;
+  transform: translateX(-50%);
+  right: auto; /* reset right positioning */
+}
+
+.carousel-caption-overlay h3,
+.carousel-caption-overlay p {
+  color: #fff; /* make sure text is visible on dark background */
+  margin: 0; /* remove extra margins if you like */
+}
+
 /* Footer */
 .footer {
   text-align: center;
