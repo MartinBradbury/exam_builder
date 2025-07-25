@@ -95,13 +95,25 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+database_url = os.environ.get("DATABASE_URL")
+
+if database_url:
+    # ✅ Production / when DATABASE_URL is set (e.g., Heroku with Supabase)
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=database_url,
+            conn_max_age=600,
+            ssl_require=True  # Supabase requires SSL
+        )
+    }
+else:
+    # ✅ Local development fallback (SQLite)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 SUPABASE_API_KEY = os.getenv("SUPABASE_API_KEY")
 
