@@ -82,6 +82,7 @@ export default function QuestionGenerator() {
           question,
           mark_scheme,
           user_answer: answer,
+          exam_board: examBoard,
         },
         {
           headers: {

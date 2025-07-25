@@ -1,23 +1,68 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import "../styles/Home.css";
 import { UserContext } from "../context/UserContext";
-import Carousel from "react-bootstrap/Carousel";
-import bio from "../assets/home/alevelbio.jpg";
-import chem from "../assets/home/alevelchem.jpg";
-import physics from "../assets/home/alevelphysics.jpg";
+import bioAlevel from "../assets/home/alevelbio.jpg";
+import chemAlevel from "../assets/home/alevelchem.jpg";
+import physicsAlevel from "../assets/home/alevelphysics.jpg";
+import SubjectCarousel from "../components/Carousel";
+import biogcse from "../assets/home/gcsebio.jpg";
+import chemgcse from "../assets/home/gcsechem.jpg";
+import physicsgcse from "../assets/home/gcsephysics.jpg";
 
 export default function Home() {
   const { user } = useContext(UserContext);
+
+  const bioChemPhysAlevel = [
+    {
+      src: bioAlevel,
+      title: "Biology",
+      description: "Dive into biological molecules, cells, and genetics.",
+    },
+
+    {
+      src: chemAlevel,
+      title: "Chemistry",
+      description: "Explore chemical reactions and molecular structures.",
+    },
+
+    {
+      src: physicsAlevel,
+      title: "Physics",
+      description: "Understand forces, energy, and the laws of motion.",
+    },
+  ];
+
+  const bioChemPhysGcse = [
+    {
+      src: biogcse,
+      title: "Biology",
+      description: "Dive into biological molecules, cells, and genetics.",
+    },
+
+    {
+      src: chemgcse,
+      title: "Chemistry",
+      description: "Explore chemical reactions and molecular structures.",
+    },
+
+    {
+      src: physicsgcse,
+      title: "Physics",
+      description: "Understand forces, energy, and the laws of motion.",
+    },
+  ];
 
   return (
     <div className="homepage">
       <header className="hero">
         <div className="hero-content">
           <h1>A‑Level Biology Exam Question Generator</h1>
+
           <p>
             Generate custom exam questions, practice answering them, and get
             instant feedback to boost your grades.
           </p>
+
           <div className="hero-buttons">
             {user ? (
               <a href="/question-generator" className="btn btn-primary">
@@ -32,69 +77,22 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ✅ New Carousel Section */}
-      <section className="subject-carousel">
-        <h2
-          style={{
-            textAlign: "center",
-            marginTop: "40px",
-            marginBottom: "20px",
-          }}
-        >
-          Explore Subjects
-        </h2>
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <Carousel>
-            <Carousel.Item>
-              <img className="d-block w-100" src={bio} alt="Biology" />
-              <Carousel.Caption className="carousel-caption-overlay">
-                <h3>Biology</h3>
-                <p>Dive into biological molecules, cells, and genetics.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
+      {/* Carousel Section */}
 
-            <Carousel.Item>
-              <img className="d-block w-100" src={chem} alt="Chemistry" />
-              <Carousel.Caption className="carousel-caption-overlay">
-                <h3>Chemistry</h3>
-                <p>Explore chemical reactions and molecular structures.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
+      <section className="subject-carousel-section">
+        <h2 className="section-title">Explore Subjects</h2>
 
-            <Carousel.Item>
-              <img className="d-block w-100" src={physics} alt="Physics" />
-              <Carousel.Caption className="carousel-caption-overlay">
-                <h3>Physics</h3>
-                <p>Understand forces, energy, and the laws of motion.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
-        </div>
-      </section>
+        <div className="carousel-grid">
+          <div className="carousel-card alevel-card">
+            <h3 className="carousel-heading">A Level</h3>
 
-      <section className="features">
-        <h2>Why Choose My Platform?</h2>
-        <div className="features-grid">
-          <div className="feature-card">
-            <h3>🧬 Topic‑Specific Questions</h3>
-            <p>
-              Select from A‑Level Biology topics like Biological Molecules,
-              Cells, Genetics, and more.
-            </p>
+            <SubjectCarousel items={bioChemPhysAlevel} />
           </div>
-          <div className="feature-card">
-            <h3>✏️ Instant Feedback</h3>
-            <p>
-              Get detailed feedback on each answer, helping you understand your
-              strengths and weaknesses.
-            </p>
-          </div>
-          <div className="feature-card">
-            <h3>📈 Track Your Progress</h3>
-            <p>
-              Save your results, revisit past questions, and see your
-              improvement over time.
-            </p>
+
+          <div className="carousel-card alevel-card">
+            <h3 className="carousel-heading">GCSE</h3>
+
+            <SubjectCarousel items={bioChemPhysGcse} />
           </div>
         </div>
       </section>

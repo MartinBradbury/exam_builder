@@ -58,17 +58,21 @@ def mark_user_answer(request):
     question = request.data.get("question")
     mark_scheme = request.data.get("mark_scheme")
     user_answer = request.data.get("user_answer")
+    exam_board = request.data.get("exam_board", "AQA")
 
     logger.info("Incoming marking request:")
     logger.info("Question: %s", question)
     logger.info("User Answer: %s", user_answer)
     logger.info("Mark Scheme: %s", mark_scheme)
+    logger.info("Exam Board: %s", exam_board)
+    
 
     if not all([question, mark_scheme, user_answer]):
         return Response({"error": "Missing one or more fields."}, status=400)
 
     try:
-        result = evaluate_response_with_openai(question, mark_scheme, user_answer)
+        # ✅ Pass exam_board into evaluate_response_with_openai
+        result = evaluate_response_with_openai(question, mark_scheme, user_answer, exam_board)
         return Response(result, status=200)
     except json.JSONDecodeError as e:
         logger.error("Invalid JSON from OpenAI: %s", e)
